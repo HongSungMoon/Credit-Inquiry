@@ -64,18 +64,41 @@ public class TakeDAO {
 		});
 	}
 	
-//	public boolean insert(Take take) {
-//		
-//		String code = take.getCode();
-//		int credit = take.getCredit();
-//		int semester = take.getSemester();
-//		int year = take.getYear();
-//		String separation = take.getSeparation();
-//		String subject = take.getSubject();
-//		
-//		String sqlStatement = "insert into takes (code, , text) values(?, ?, ?);";
-//		return (jdbcTemplate.update(sqlStatement, new Object[] {name, email, text}) == 1);
-//	}
+	public List<Take> getCreditBySeparation() {
+		String sqlStatement = "select separation, sum(credit) from takes group by separation";
+		return jdbcTemplate.query(sqlStatement, 
+				new RowMapper<Take>() {
+
+			public Take mapRow(ResultSet rs, int rowNum) throws SQLException {
+				
+				Take take = new Take();
+				
+				take.setSeparation(rs.getString("separation"));
+				take.setCredit(rs.getInt("sum(credit)"));
+				
+				return take;
+				
+			}
+		});
+	}
+	
+	public int getTotalCredit() {
+		String sqlStatement = "select sum(credit) from takes";
+		return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
+	}
+	
+	public boolean insert(Take take) {
+		
+		String code = take.getCode();
+		int credit = take.getCredit();
+		int semester = take.getSemester();
+		int year = take.getYear();
+		String separation = take.getSeparation();
+		String subject = take.getSubject();
+		
+		String sqlStatement = "insert into takes (code, credit, semester, year, separation, subject) values(?, ?, ?, ?, ?, ?);";
+		return (jdbcTemplate.update(sqlStatement, new Object[] {code, credit, semester, year, separation, subject}) == 1);
+	}
 	
 	
 	public boolean delete(int id) {

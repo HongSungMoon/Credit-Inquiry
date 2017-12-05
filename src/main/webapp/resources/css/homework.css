@@ -9,8 +9,7 @@
 }
 
 .label {
-	text-align: center;
-	vertical-align: top;
+	background: #b9eff2;
 }
 
 .control {
@@ -20,7 +19,7 @@
 .error {
 	font-size: small;
 	color: red;
-	margin-left: 10px;
+	margin: 10px;
 }
 
 textarea {
@@ -29,7 +28,6 @@ textarea {
 }
 
 input[type=text] {
-	width: 300px;
 	border-width: 1px;
 	padding: 2px;
 }
@@ -41,12 +39,11 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-	background-color: GRAY;
+	background-color: YELLOWGREEN;
 }
 
 table {
 	margin: 50px;
-	width: 500px;
 	border-collapse: collapse;
 }
 

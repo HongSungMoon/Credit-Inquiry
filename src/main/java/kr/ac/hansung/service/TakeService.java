@@ -28,5 +28,26 @@ public class TakeService {
 		return takes;
 		
 	}
+	
+	public List<Take> getCreditsBySeparation() {
+		
+		List<Take> takes = takeDao.getCreditBySeparation();
+		
+		return takes;
+		
+	}
+
+	public int getTotalCredit() {
+		
+		int totalCredit = takeDao.getTotalCredit();
+		
+		return totalCredit;
+	}
+
+	public void insert(Take take) {
+
+		takeDao.insert(take);
+		
+	}
 
 }

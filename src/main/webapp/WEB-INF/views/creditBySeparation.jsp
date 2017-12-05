@@ -13,19 +13,18 @@
 <body>
 	<table>
 		<tr>
-			<th>년도</th>
-			<th>학기</th>
-			<th>이수학점</th>
-			<th>상세보기</th>
-		</tr>
 		<c:forEach var="take" items="${takes}">
-			<tr>
-				<td><c:out value="${take.year }" /></td>
-				<td><c:out value="${take.semester }" /></td>
-				<td><c:out value="${take.credit }" /></td>
-				<td><a href="${pageContext.request.contextPath}/showTakes?year=${take.year}&semester=${take.semester}">링크</a></td>
-			</tr>
+			<th><c:out value="${take.separation }" /></th>
 		</c:forEach>
+		<th>총학점</th>
+		</tr>
+		<tr>
+		<c:forEach var="take" items="${takes}">
+			<td><c:out value="${take.credit }" /></td>
+		</c:forEach>
+		<td><c:out value="${totalCredit }"/></td>
+		</tr>
+		
 	</table>
 </body>
 </html>
